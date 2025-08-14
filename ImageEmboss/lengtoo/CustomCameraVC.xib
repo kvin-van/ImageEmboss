@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomCameraVC" customModule="lengtoo" customModuleProvider="target">
+            <connections>
+                <outlet property="captureButton" destination="qUN-2g-Glp" id="AHm-O0-cf5"/>
+                <outlet property="previewView" destination="QD8-YP-djR" id="10e-Ei-wuz"/>
+                <outlet property="view" destination="iN0-l3-epB" id="tGG-Qv-8zr"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QD8-YP-djR">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qUN-2g-Glp">
+                    <rect key="frame" x="161.66666666666666" y="688" width="70" height="70"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="eeT-A4-cxT"/>
+                        <constraint firstAttribute="height" constant="70" id="m47-QQ-Cvx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="拍 照">
+                        <color key="titleColor" red="0.2901960784" green="0.3294117647" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="35"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="capturePhoto:" destination="-1" eventType="touchUpInside" id="zQi-a8-pi1"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qUN-2g-Glp" secondAttribute="bottom" constant="60" id="340-oH-N0C"/>
+                <constraint firstAttribute="bottom" secondItem="QD8-YP-djR" secondAttribute="bottom" id="6GZ-Oo-iKf"/>
+                <constraint firstItem="QD8-YP-djR" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8eL-G4-zIr"/>
+                <constraint firstItem="qUN-2g-Glp" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="MAY-oI-9KB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="QD8-YP-djR" secondAttribute="trailing" id="SWe-nV-awv"/>
+                <constraint firstItem="QD8-YP-djR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gbc-M0-66I"/>
+            </constraints>
+            <point key="canvasLocation" x="94" y="20"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
