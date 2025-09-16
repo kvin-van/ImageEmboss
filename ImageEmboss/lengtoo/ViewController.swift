@@ -15,10 +15,15 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
     @IBOutlet weak var imagesView2: UIImageView! //装图片
     @IBOutlet weak var nameLab: UILabel! //装
     
+    var imageAnalysisMG : ImageAnalysisMG!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        imageAnalysisMG = ImageAnalysisMG()
+
+        self.imagesView.addInteraction(self.imageAnalysisMG.interaction)//需要提前绑定 interaction 不然没有圈
+//        self.imagesView2.addInteraction(self.imageAnalysisMG.interaction)
    
     }
 
@@ -29,15 +34,36 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         self.nameLab.text = ""
         self.imagesView.image = image
         
-        let imageEmboss = ImageEmboss()
-        imageEmboss.processImage(imageV: imagesView) { resultImg in
+
+        //方式1 相册方式
+        imageAnalysisMG._callBack = {backImg in
+//            self.imagesView.image = backImg
+//             self.imagesView2.image = backImg
+//            self.imagesView2.frame = self.imageAnalysisMG.rectArr.first!
+//            self.imagesView.addSubview(self.imagesView2)
+//            self.view.backgroundColor = Tools.getMainColor(backImg)
+         }
+        imageAnalysisMG.analyzerImg(readImg: image) { ok in
             self.particleizeImage(self.imagesView)
-//            self.particleizeImageView(self.imagesView)
-            self.imagesView.image = resultImg
-            DispatchQueue.main.asyncAfter(deadline: .now()+2.0) { //延时
-                self.imagesView.addLinePath()
-            }
+            self.imageAnalysisMG.generateImageForSelectedObjects()
         }
+        
+        //方式3 抠图方式
+//        let imageEmboss = ImageEmboss()
+//        imageEmboss.processImage(imageV: imagesView) { resultImg in
+//            self.particleizeImage(self.imagesView)
+////            self.particleizeImageView(self.imagesView)
+//            self.imagesView.image = resultImg
+//            DispatchQueue.main.asyncAfter(deadline: .now()+2.0) { //延时
+//                self.imagesView.addLinePath()
+//            }
+//        }
+        
+        //方式2
+//        let imageProcessor = ImageProcessor()
+//        imageProcessor.processImage(image) { resultImg in
+//            self.imagesView.image = resultImg
+//        }
         
     }
     
@@ -51,7 +77,8 @@ class ViewController: UIViewController , UIImagePickerControllerDelegate, UINavi
         pickerVC.allowsEditing = false
         pickerVC.sourceType = .camera
         self.present(pickerVC, animated: true, completion: nil)
-        self.imagesView.contentMode = .scaleAspectFit
+        //为了 ImageAnalysisMG 让阴影撑满屏幕。 如果使用其他的可以不这么设置
+        self.imagesView.contentMode = .scaleAspectFill
     }
 
     @IBAction func openPhoto(_ sender : UIButton){
