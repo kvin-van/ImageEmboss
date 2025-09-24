@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import Photos
-
+      
 class CustomCameraVC: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
